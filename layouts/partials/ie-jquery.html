@@ -1,0 +1,292 @@
+<!-- start Simple Custom CSS and JS -->
+<script type="text/javascript">
+jQuery(function () {
+    // #ページ内リンクのスムーススクロール
+    jQuery('.post-text a[href^="#"]').click(function(){
+    // スクロールの速度
+    var speed = 300;
+    var href= jQuery(this).attr("href");
+    if(href == "#" || href == ""){
+        return false;
+    }else{
+        var target = jQuery(href);
+    }
+    var position = target.offset().top;
+    jQuery('body,html').animate({scrollTop:position}, speed, 'swing');
+        return false;
+    });
+    
+    // スマホのみヘッダー追従
+    var ua = navigator.userAgent;
+    var isPC = 0;
+    if (ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0) {
+        // スマートフォン用コード
+    } else {
+        // PC用コード
+        isPC = 1;
+    }
+    jQuery(document).scroll(function () {
+        var scroll = jQuery(window).scrollTop();
+        // 少しスクロールするとヘッダーが追従(スマホのみ)
+        if (scroll > 100 && isPC == 0) {
+            jQuery("#masthead").addClass("header-fade");
+            jQuery("#masthead").removeClass("header-fade-re");
+        } else if(isPC == 0) {
+            jQuery("#masthead").removeClass("header-fade");
+            jQuery("#masthead").addClass("header-fade-re");
+        }
+        // fade-up 要素のところまでスクロールするとふわっと表示
+        jQuery('.fade-up').each(function () {
+            var POS = jQuery(this).offset().top;
+            var scroll = jQuery(window).scrollTop();
+            var windowHeight = jQuery(window).height();
+            if (scroll > POS - windowHeight + windowHeight / 10) { // 要素の一番上が画面最下端＋最下端/10に来た時
+                jQuery(this).css({
+                    'opacity': '1',
+                    'transform': 'translateY(0)',
+                    '-webkit-transform': 'translateY(0)',
+                    '-moz-transform': 'translateY(0)',
+                    '-ms-transform': 'translateY(0)'
+                });
+            } else {
+                jQuery(this).css({
+                    'opacity': '0',
+                    'transform': 'translateY(70px)',
+                    '-webkit-transform': 'translateY(70px)',
+                    '-moz-transform': 'translateY(70px)',
+                    '-ms-transform': 'translateY(70px)'
+                });
+            }
+        });
+    });
+  
+    // 管理バー表示
+    if (document.getElementById('admin-bar-css')) {
+        //ログインしているとみなして管理バー分下げる
+        jQuery(document.body).css("position", "relative");
+    } else {}
+});
+
+
+// selectされたページのみ表示する
+jQuery(function () {
+    var ua = navigator.userAgent;
+    if (ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0) {
+        // スマートフォン用コード
+        jQuery('li.side-menu-item.menu1, li.side-menu-item.menu2, li.side-menu-item.menu3, li.side-menu-item.menu4').on("click", function () {
+            jQuery(this).children(".menu-visual").addClass("fade-in");
+        });
+        jQuery('#page').on("click", function () {
+            jQuery('.menu-visual').removeClass("fade-in");
+        });
+    } else {
+        // PC用コード
+        jQuery('li.side-menu-item.menu1, li.side-menu-item.menu2, li.side-menu-item.menu3, li.side-menu-item.menu4').hover(function () {
+            // マウスを乗せたら発動
+            jQuery(this).children(".menu-visual").toggleClass("fade-in");
+        }, function () {
+            // マウスを離したときの動作
+            jQuery(this).children(".menu-visual").removeClass("fade-in");
+        });
+    }
+});
+
+
+jQuery(function () {
+        jQuery(document).on("click touchend", function (e) {
+            if (!jQuery(e.target).closest('div#prospective, div#enrollment, div.navi-menu .item').length) {
+                if (jQuery('div.navi-container').is(':visible')) {
+                    jQuery("div.navi-container").removeClass("fade-in");
+                }
+            }
+        });
+        jQuery('div#prospective, div#enrollment').on("click", function () {
+            if (jQuery('div.navi-container').is(':visible')) {
+                jQuery("div.navi-container").removeClass("fade-in");
+            }
+            jQuery(this).next("div.navi-container").addClass("fade-in");
+        });
+});</script>
+<!-- end Simple Custom CSS and JS -->
+<style type="text/css">.img-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img-wrapper .text{
+    width: 75%;
+}
+.img-wrapper .img{
+    width: 23%;
+    margin: 1%;
+}
+.img-wrapper .img img{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(rgba(200,200,200,0.6), rgba(255,255,255,0.9));
+}
+@media screen and (max-width: 767px){
+.img-wrapper{
+    flex-direction: column;
+}
+.img-wrapper .text{
+    width: 100%;
+}
+.img-wrapper .img{
+    width: 98%;
+    margin: 1%;
+}
+}
+
+div.history{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    flex-wrap: wrap;
+    line-height: 3em;
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+div.history .history-date{
+    width: 25%;
+    background: #333;
+    color: #FFF;
+    padding-left: 2%;
+    border-bottom: 1px solid #FFF;
+    border-radius: 2px 2px 2px 2px;
+}
+div.history .history-detail{
+    width: 75%;
+    padding-left: 2%;
+    border-bottom: 1px solid #ccc;
+}
+@media screen and (max-width: 767px){
+div.history{
+    justify-content: left;
+    width: 100%;
+    flex-wrap: wrap;
+    line-height: 2em;
+}
+div.history .history-date{
+    width: 50%;
+}
+div.history .history-detail{
+    width: 100%;
+    margin-bottom: 5%;
+}
+}</style><script type="text/javascript"></script><link rel="pingback" href="/xmlrpc.php">
+	<style type="text/css">
+		.offcanvas-menu-open .kt-offcanvas-overlay {
+		    position: fixed;
+		    width: 100%;
+		    height: 100%;
+		    background: rgba(0, 0, 0, 0.7);
+		    opacity: 1;
+		    z-index: 9;
+		    top: 0px;
+		}
+
+		.kt-offcanvas-overlay {
+		    width: 0;
+		    height: 0;
+		    opacity: 0;
+		    transition: opacity 0.5s;
+		}
+		
+		#primary-nav-container{
+			padding-top: 0px;
+		}
+
+		
+		
+		
+		
+		/*======================================*/
+		/* Site title */
+		/*======================================*/
+		.site-header .site-branding .site-title,
+		.site-header .site-branding .site-title a {
+			color: #ffffff;
+		} 
+
+		/*======================================*/
+		/* Tagline title */
+		/*======================================*/
+		.site-header .site-branding .site-description {
+			color: #d9d9d9;
+		}
+
+		/*======================================*/
+		/* Primary color */
+		/*======================================*/
+
+		/*======================================*/
+		/* Background Primary color */
+		/*======================================*/
+		.button-primary,
+		#go-top span,
+		.site-header,
+		.block-slider #kt-slide-pager .owl-dot span:hover,
+		.block-slider #kt-slide-pager .owl-dot span:focus,
+		.block-slider #kt-slide-pager .owl-dot span:active,
+		.block-slider #kt-slide-pager .owl-dot.active span:hover,
+		.block-slider #kt-slide-pager .owl-dot.active span:focus,
+		.block-slider #kt-slide-pager .owl-dot.active span:active,
+		article.hentry.sticky .post-format-outer > span a,
+		.icon-block-outer .list-inner .icon-area .icon-outer a,
+		.searchform .search-button,
+		.block-grid .post-content .post-content-inner span.cat a,
+		.top-header .top-header-right .socialgroup a:hover,
+		.top-header .top-header-right .socialgroup a:focus,
+		.top-header .top-header-right .socialgroup a:active, .sub-title:before {
+			background-color: #4b75b9		}
+
+		/*======================================*/
+		/* Border Primary color */
+		/*======================================*/
+		.button-primary,
+		.block-grid .post-content .post-content-inner span.cat a,
+		.block-slider #kt-slide-pager .owl-dot span:hover,
+		.block-slider #kt-slide-pager .owl-dot span:focus,
+		.block-slider #kt-slide-pager .owl-dot span:active,
+		.searchform .search-button {
+			border-color: #4b75b9		}
+
+		/*======================================*/
+		/* Primary text color */
+		/*======================================*/
+		.block-testimonial .slide-item article.post-content .post-content-inner .post-title span, .sub-title {
+			color: #4b75b9		}
+		
+	</style>
+		<style id="education-booster-custom-header-styles" type="text/css">
+		.wrap-inner-banner .page-header .page-title,
+		body.home.page .wrap-inner-banner .page-header .page-title {
+			color: #blank;
+		}
+	</style>
+<link rel="icon" href="/files/2019/10/cropped-icon-32x32.png" sizes="32x32" />
+<link rel="icon" href="/files/2019/10/cropped-icon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="/files/2019/10/cropped-icon-180x180.png" />
+<meta name="msapplication-TileImage" content="/files/2019/10/cropped-icon-270x270.png" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-249TVVX4SP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-249TVVX4SP');
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150452374-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-150452374-1');
+</script>
