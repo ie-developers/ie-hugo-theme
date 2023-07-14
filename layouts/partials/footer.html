@@ -25,9 +25,13 @@
 											</div>
 		</footer>
 	    </div>
-</article>				<div class="modified-date">
-					公開日:2008/11/27<br>
-										最終更新日:2020/03/19								</div>
+</article>				
+<div class="modified-date">
+{{ with .PublishDate }}
+    Published: {{ .PublishDate.Format "2006/01/02" }}<br>
+{{ end }}
+    Last Updated: {{ .Page.Lastmod.Format "2006/01/02" }}
+</div>
 		</div>
 	</div>
 	<div class="menu-bar">

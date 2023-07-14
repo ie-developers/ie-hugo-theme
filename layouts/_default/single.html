@@ -1,4 +1,7 @@
-{{ range .Data.Pages }}
-<h2>{{ .Title }}</h2>
-<p>{{ .Content }}</p>
+{{ define "main" }}
+  {{ partial "ie-jquery.html" . }}
+  <div id="content">
+    {{ .Content }}
+  </div>
 {{ end }}
+
