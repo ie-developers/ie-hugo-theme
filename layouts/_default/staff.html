@@ -1,0 +1,107 @@
+{{ define "main" }}
+  {{ partial "ie-jquery.html" . }}
+<link rel="stylesheet" href="/files/profile.css">
+
+<!-- import data from data/staff.yml -->
+  <div id="content">
+  {{ .Content }}
+
+  <!-- スタッフ紹介ページ用のCSSが適用されていないため、元のHTMLページを参考にしてタグやclassを修正する -->
+  <section class="wrapper wrap-detail-page">
+    <div class="container">
+    <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+    <article id="post-9253" class="post-content post-9253 page type-page status-publish hentry">
+    <div class="post-content-inner">
+    <div class="post-text">
+
+  <!-- staff.ymlの構造を整理すれば、h2タグの部分もrangeで回してうまく構造化できる -->
+  <h2>教員</h2>
+    <div class="profile-list">
+  {{ range .Site.Data.staff.staff }} <!-- staff.ymlのstaff要素を参照 -->
+      <div class="profile">
+        <div class="profile-img">
+          <img class="aligncenter size-full" src="{{ .image }}" alt="" width="250">
+          <h3>{{ .name }}</h3>
+          <p>{{ .nameKana }}</p>
+        </div>
+        <div class="profile-txt">
+          <div class="tag">職名</div>
+          <div class="data">{{ .role }}</div>
+          <div class="tag">専門分野</div>
+          <div class="data">
+	    {{ range $index, $element := .specialties }}
+		{{ if $index }}<br />{{ end }}
+		{{ $element }}
+	    {{ end }}
+	  </div>
+          <div class="tag">E-mail</div>
+          <div class="data"><a href="mailto:{{ .email }}">{{ .email }}</a></div>
+            <div class="tag">HP</div>
+            <div class="data"><a href="{{ .homepage }}" target="_blank" rel="noopener">{{ .homepage }}</a></div>
+        </div>
+      </div>
+  {{ end }}
+      </div>
+  <h2>職員</h2>
+    <div class="profile-list">
+  {{ range .Site.Data.staff.technical_staff }} <!-- staff.ymlのstaff要素を参照 -->
+      <div class="profile">
+        <div class="profile-img">
+          <img class="aligncenter size-full" src="{{ .image }}" alt="" width="250">
+          <h3>{{ .name }}</h3>
+          <p>{{ .nameKana }}</p>
+        </div>
+        <div class="profile-txt">
+          <div class="tag">職名</div>
+          <div class="data">{{ .role }}</div>
+          <div class="tag">専門分野</div>
+          <div class="data">
+	    {{ range $index, $element := .specialties }}
+		{{ if $index }}<br />{{ end }}
+		{{ $element }}
+	    {{ end }}
+	  </div>
+          <div class="tag">E-mail</div>
+          <div class="data"><a href="mailto:{{ .email }}">{{ .email }}</a></div>
+            <div class="tag">HP</div>
+            <div class="data"><a href="{{ .homepage }}" target="_blank" rel="noopener">{{ .homepage }}</a></div>
+        </div>
+      </div>
+  {{ end }}
+      </div>
+  <h2>名誉教授 その他</h2>
+    <div class="profile-list">
+  {{ range .Site.Data.staff.honorary_professors }} <!-- staff.ymlのstaff要素を参照 -->
+      <div class="profile">
+        <div class="profile-img">
+          <img class="aligncenter size-full" src="{{ .image }}" alt="" width="250">
+          <h3>{{ .name }}</h3>
+          <p>{{ .nameKana }}</p>
+        </div>
+        <div class="profile-txt">
+          <div class="tag">職名</div>
+          <div class="data">{{ .role }}</div>
+          <div class="tag">専門分野</div>
+          <div class="data">
+	    {{ range $index, $element := .specialties }}
+		{{ if $index }}<br />{{ end }}
+		{{ $element }}
+	    {{ end }}
+	  </div>
+          <div class="tag">E-mail</div>
+          <div class="data"><a href="mailto:{{ .email }}">{{ .email }}</a></div>
+            <div class="tag">HP</div>
+            <div class="data"><a href="{{ .homepage }}" target="_blank" rel="noopener">{{ .homepage }}</a></div>
+        </div>
+      </div>
+  {{ end }}
+      </div>
+      </div>
+      </div>
+      </article>
+      </div>
+      </div>
+    </section>
+  </div>
+{{ end }}

@@ -1,4 +1,4 @@
-# ie-hugo-theme
+## ie-hugo-theme
 
 some files refer document root such as /files. put these files in ie-web/ie directory.
 

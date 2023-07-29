@@ -1,0 +1,69 @@
+{{ define "main" }}
+<link rel="stylesheet" href="/files/top.css">
+  {{ partial "top-jquery.html" . }}
+
+<!-- import data from data/staff.yml -->
+<div class="top-visual">
+<div class="banner">
+<img class="catch-img" src="/files/2018/07/catch.png" alt="" width="1024" height="504"></div>
+<p><a id="scroll" href="#top-content"><span></span>Scroll</a></p>
+</div>
+<div class="content" id="top-content">
+<div id="introduction" class="fade-up">
+<div class="intro-txt">
+<h1 class="content-title">最先端で活躍できる<br />
+人材の育成を目指して</h1>
+
+  <div id="content">
+  {{ .Content }}
+</div>
+</div>
+</div>
+
+    <div class="ie-news fade-up">
+    <div class="info-title">お知らせ</div>
+    <div class="information">
+    <ul class="rss-aggregator">
+      {{ range .Site.Data.ienews.ienews }} <!-- staff.ymlのstaff要素を参照 -->
+        <li class="feed-item">
+          <a target="_blank" rel="nofollow" href="{{ .link }}">{{ .topic }}<br /></a>
+          <div class="wprss-feed-meta"><span class="feed-date">{{ .date }}</span></div>
+        </li>
+      {{ end }}
+    </ul>
+    </div>
+    </div>
+<div class="icon-menu fade-up">
+<div class="icon">
+<img src="/files/2020/03/pamphlet.png" alt="パンフレットのアイコン" width="128" height="128"><a class="newtab" href="/files/2022/07/pamph-2022.pdf" target="_blank" rel="noopener"></a><br />
+パンフレット</div>
+<div class="icon">
+<img src="/files/2020/03/youtube.png" alt="YouTubeのアイコン" width="128" height="128"><a class="newtab" href="https://www.youtube.com/channel/UCa1Ds55qqRLKl-QY8F6krjg" target="_blank" rel="noopener"></a><br />
+YouTubeチャンネル</div>
+<div class="icon">
+<img src="/files/2020/03/map.png" alt="マップのアイコン" width="128" height="128"><a href="http://www.u-ryukyu.ac.jp/access/" target="_blank" rel="noopener"></a><br />
+交通アクセス</div>
+<div class="icon">
+<img src="/files/2020/03/question.png" alt="お問い合わせのアイコン" width="128" height="128"><a href="/inquiry/" rel="noopener"></a><br />
+お問い合わせ</div>
+<div class="icon" id="sangaku">
+<div class="sangaku-icon">
+<img src="/files/2020/03/handshake.png" alt="" width="128" height="128"></div>
+<div class="sangaku-txt"><a class="newtab" href="https://iicc.skr.u-ryukyu.ac.jp/" target="_blank" rel="noopener"></a></p>
+<p>企業の方はこちら</p>
+<p id="sangaku-link">琉球大学産学官連携</p>
+</div>
+</div>
+<div class="icon" id="engineer">
+<div class="engineer-icon">
+<img src="/files/2020/03/setting.png" alt="工学部工学科のアイコン" width="128" height="128"></div>
+<div class="engineer-txt"><a class="newtab" href="https://www.tec.u-ryukyu.ac.jp/" target="_blank" rel="noopener"></a></p>
+<p id="engineer-link">琉球大学工学部工学科</p>
+</div>
+</div>
+<div class="icon" id="runiv">
+<img src="/files/2020/03/Rmark.png" alt="" width="128" height="128"><a class="newtab" href="http://www.u-ryukyu.ac.jp/" target="_blank" rel="noopener"></a></div>
+</div>
+</div>
+</div>
+{{ end }}
